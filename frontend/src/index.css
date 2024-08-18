@@ -1,4 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+
+@layer base {
+  :root {
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* ... */
+  }
+}
