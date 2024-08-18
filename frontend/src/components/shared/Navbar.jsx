@@ -43,7 +43,7 @@ function Navbar() {
               </Avatar>
               <div>
                 <h4 className="font-medium">Rajeshwari Baniya</h4>
-                <p className="text-sm text-muted-foreground">Hello world!</p>
+                <p className="text-sm text-muted-foreground">Frontend designer</p>
               </div>
               
                 </div>
