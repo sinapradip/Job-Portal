@@ -42,7 +42,7 @@ function Navbar() {
           <ul className="flex font-medium items-center gap-4">
             <li>Home</li>
             <li>Jobs</li>
-            <li>Browse</li>
+            <li>BRowse</li>
           </ul>
 
           {
