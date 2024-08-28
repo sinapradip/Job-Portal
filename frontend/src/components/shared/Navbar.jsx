@@ -40,7 +40,7 @@ function Navbar() {
 
         <div className="flex items-center gap-6">
           <ul className="flex font-medium items-center gap-4">
-            <li>HOME</li>
+            <li>Home</li>
             <li>Jobs</li>
             <li>Browse</li>
           </ul>
