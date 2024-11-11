@@ -4,6 +4,7 @@ import User from './backend/models/user.model.js' // imported user with my own a
 
 export const register = async (req, res) => {
     try {
+        // Object Destruction in JS
         const {fullname, email, phone, password, role} = req.body;
 
         // Check if any field is missing
@@ -34,7 +35,7 @@ export const register = async (req, res) => {
             role
         })
 
-        return res.status(200).json({
+        return res.status(201).json({
             message: 'User created successfully',
             success: true
         })
@@ -51,7 +52,7 @@ export const register = async (req, res) => {
 }
 
 export const login = async(req,res) => {
-    try{
+    try {
         const {email, password, role} = req.body;
 
         // 1. Validate required fields (email, password, role)
