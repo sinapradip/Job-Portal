@@ -46,4 +46,4 @@ const jobSchema = mongoose.Schema({
 
 }, {timestamps: true})
 
-export const Job = mongoose.Schema('Job', jobSchema) // export the model with the schema
+export const Job = mongoose.model('Job', jobSchema) // export Job model with the schema
