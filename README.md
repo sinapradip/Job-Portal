@@ -2,5 +2,5 @@
 This is the project for CSIT Seventh Semester.
 
 # Contributors
-@rajeshwaribaniya
-@sinapradip
+[Rajeshwari Baniya](https://github.com/rajeshwaribaniya)
+[Sina Pradip](https://github.com/sinapradip)
