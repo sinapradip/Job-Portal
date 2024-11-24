@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar } from './shared'
-import { CategoryCarousel, HeroSection } from '.'
+import { Footer, Navbar } from './shared'
+import { CategoryCarousel, HeroSection, LatestJobs } from '.'
 
 export default function Home() {
   return (
@@ -9,8 +9,8 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <CategoryCarousel />
-        {/* <LatestJobs /> */}
-        {/* <Footer /> */}
+        <LatestJobs />
+        <Footer />
      </div>
     </>
   )
