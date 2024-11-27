@@ -135,3 +135,81 @@ export const login = async(req,res) => {
     }
 }
 
+export const logout = async(req, res) => {
+    try {
+        return res.status(200).cookie("token", "", {maxAge: 0}).json({
+            message: "Logged out successfully",
+            success: true
+        })
+    }
+    catch (error) {
+        return res.status(500).json({
+             message: 'An unexpected error occured. Please try again.'
+        })
+    }
+}
+
+export const updateProfile = async(req, res) => {
+    try {
+        const {fullname, email, phone, bio, skills} = req.body;
+        const file = req.file;
+
+        if(!fullname || !email || !phone || !password || !role) {
+            return res.status(400).json({
+                message: 'Either of the field is missing',
+                success: false
+            })
+        }
+        
+        // Cloudinary setup comes here later
+
+        // convert skills string to array
+        let skillsArray;
+        if(skills) {
+            skillsArray = skills.split(",")
+        }
+        const userId = req.id; // middleware authentication
+
+        let user = await user.findById(userId);
+
+        if(!user) {
+            return res.status(400).json({
+                message: "User not found",
+                success: false
+            })
+        }
+
+        // Updating data
+
+        user.fullname = fullname;
+        user.email = email;
+        user.phone = phone;
+        user.profile.bio = bio;
+        user.profile.skills = skillsArray; // Skills is now a array
+
+        // resume code
+
+        await user.save();
+
+        user = {
+            _id: user._id,
+            fullname: user.fullname,
+            email: user.email,
+            phone: user.phone,
+            bio: user.profile.bio,
+            skills: user.profile.skills
+        }
+
+        return res.status(200).json({
+            message: "Profile updated successfully",
+            success: true,
+            user
+        })
+
+    }
+    catch(error) {
+        return res.status(500).json({
+            message: 'An error occured. Please try again.'
+        })
+    }
+}
