@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { User } from '../models/user.model.js'; // imported user with my own assumption for line 18
+import { User } from '../models/User.model.js'; // imported User with my own assumption for line 18
 
 export const register = async (req, res) => {
     try {
@@ -15,16 +15,16 @@ export const register = async (req, res) => {
             })
         }
 
-        //check if user with the input email already exists
-        const existingUser = await User.findOne({email});
-        if(existingUser) {
+        //check if User with the input email already exists
+        const user = await User.findOne({email});
+        if(user) {
             return res.status(400).json({
                 message: 'User with this email already exists.',
                 success: false
             })
         }
 
-        // Hash password and create user
+        // Hash password and create User
         const hashedPassword = await bcrypt.hash(password, 10)
 
         await User.create({
@@ -64,10 +64,10 @@ export const login = async(req,res) => {
             })
         }
 
-        // 2. Check if the user exists with the given email
+        // 2. Check if the User exists with the given email
 
-        let user = await User.findOne({email})
-        if(!user) {
+        let User = await User.findOne({email})
+        if(!User) {
             return res.status(400).json({
                 message: 'Incorrect email or password.',
                 success: false
@@ -75,7 +75,7 @@ export const login = async(req,res) => {
         }
 
         // 3. Compare the provided password with the hashed password in the database
-        const isPasswordMatch = await bcrypt.compare(password, user.password)
+        const isPasswordMatch = await bcrypt.compare(password, User.password)
 
         if(!isPasswordMatch) {
             return res.status(400).json(
@@ -86,43 +86,43 @@ export const login = async(req,res) => {
             )
         }
 
-        // 4. Verify the provided role matches the user's role in the database
-        if(user.role !== role) {
+        // 4. Verify the provided role matches the User's role in the database
+        if(User.role !== role) {
             return res.status(400).json({
                 message: 'Incorrect role.',
                 success: false
             })
         }
 
-        // 5. Generate a JWT token with the user ID and send it in the response
+        // 5. Generate a JWT token with the User ID and send it in the response
         const tokenData = {
-            userId: user._id
+            userId: User._id
         }
 
         // 6. Return the token in a cookie with a 1-day expiration and set proper cookie options (httpsOnly, sameSite)
         const token = jwt.sign(tokenData, process.env.JWT_SECRET, {expiresIn: '1d'})
 
-        // create user object to return in the response
-        user = {
-            _id: user._id,
-            fullname: user.fullname,
-            email: user.email,
-            phone: user.phone,
-            role: user.role,
-            profile: user.profile
+        // create User object to return in the response
+        User = {
+            _id: User._id,
+            fullname: User.fullname,
+            email: User.email,
+            phone: User.phone,
+            role: User.role,
+            profile: User.profile
         }
 
         // Store the token in a cookie with proper cookie options
 
-        // 7. Respond with a success message and user data
+        // 7. Respond with a success message and User data
         return res.status(200).cookie('token', token, {
             httpsOnly: true,
             sameSite: 'strict',
             secure: true,
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
         }).json({
-            message: `Welcome back ${user.fullname}`,
-            user,
+            message: `Welcome back ${User.fullname}`,
+            User,
             success: true
         })
 
@@ -130,7 +130,7 @@ export const login = async(req,res) => {
     }
     catch(error) {
         return res.status(500).json({
-            message: 'An error occured while logging in the user. Please try again.'
+            message: 'An error occured while logging in the User. Please try again.'
         })
     }
 }
@@ -163,7 +163,7 @@ export const updateProfile = async(req, res) => {
         }
         const userId = req.id; // middleware authentication
 
-        let user = await user.findById(userId);
+        let user = await User.findById(userId);
 
         if(!user) {
             return res.status(400).json({
@@ -174,41 +174,37 @@ export const updateProfile = async(req, res) => {
 
         // Updating data
 
-        if(fullname) user.fullname = fullname
-        if(email) user.fullname = email
-        if(phone) user.fullname = phone
-        if(bio) user.fullname = bio
-        if(skills) user.fullname = skillsArray
-
-        user.fullname = fullname;
-        user.email = email;
-        user.phone = phone;
-        user.profile.bio = bio;
-        user.profile.skills = skillsArray; // Skills is now a array
+        if (fullname) user.fullname = fullname;
+        if (email) user.email = email;
+        if (phone) user.phone = phone;
+        if (bio) user.bio = bio;
+        if (skillsArray) user.skills = skillsArray; // Skills is now a array
 
         // resume code
 
         await user.save();
 
-        user = {
-            _id: user._id,
-            fullname: user.fullname,
-            email: user.email,
-            phone: user.phone,
-            bio: user.profile.bio,
-            skills: user.profile.skills
-        }
 
         return res.status(200).json({
             message: "Profile updated successfully",
             success: true,
-            user
-        })
+            user: {
+                _id: user._id,
+                fullname: user.fullname,
+                email: user.email,
+                phone: user.phone,
+                bio: user.bio,
+                skills: user.skills
+            }
+        });
 
     }
     catch(error) {
+
+        console.error("Error updating profile:", error);
+
         return res.status(500).json({
-            message: 'An error occured. Please try again.'
-        })
+            message: 'An error occured while updating your profile. Please try again.'
+        });
     }
-}
+};

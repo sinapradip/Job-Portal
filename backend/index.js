@@ -32,7 +32,7 @@ app.get("/", (req,res) => {
 // Create api's
 app.use("/api/v1/user", userRoute)
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running at PORT ${PORT}`)
     connectDB();
 });

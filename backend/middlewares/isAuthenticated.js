@@ -26,7 +26,7 @@ const isAuthenticated = async (req, res, next) => {
 
     } catch (error) {
         return res.status(500).json({
-            message: 'An unexpected error occured. Please try again.'
+            message: 'An error occured. User not authenticated'
        })
     }
 
