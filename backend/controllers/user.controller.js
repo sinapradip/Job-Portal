@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import User from './backend/models/user.model.js' // imported user with my own assumption for line 18
+import { User } from '../models/user.model.js'; // imported user with my own assumption for line 18
 
 export const register = async (req, res) => {
     try {
@@ -100,7 +100,7 @@ export const login = async(req,res) => {
         }
 
         // 6. Return the token in a cookie with a 1-day expiration and set proper cookie options (httpsOnly, sameSite)
-        const token = await jwt.sign(tokenData, process.env.JWT_SECRET, {expiresIn: '1d'})
+        const token = jwt.sign(tokenData, process.env.JWT_SECRET, {expiresIn: '1d'})
 
         // create user object to return in the response
         user = {
@@ -121,7 +121,7 @@ export const login = async(req,res) => {
             secure: true,
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
         }).json({
-            message: 'User Logged in successfully',
+            message: `Welcome back ${user.fullname}`,
             user,
             success: true
         })
@@ -153,13 +153,6 @@ export const updateProfile = async(req, res) => {
     try {
         const {fullname, email, phone, bio, skills} = req.body;
         const file = req.file;
-
-        if(!fullname || !email || !phone || !password || !role) {
-            return res.status(400).json({
-                message: 'Either of the field is missing',
-                success: false
-            })
-        }
         
         // Cloudinary setup comes here later
 
@@ -180,6 +173,12 @@ export const updateProfile = async(req, res) => {
         }
 
         // Updating data
+
+        if(fullname) user.fullname = fullname
+        if(email) user.fullname = email
+        if(phone) user.fullname = phone
+        if(bio) user.fullname = bio
+        if(skills) user.fullname = skillsArray
 
         user.fullname = fullname;
         user.email = email;
