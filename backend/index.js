@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './utils/db.js'
+import userRoute from "./routes/user.route.js"
 
 const app = express(); // create express app instance
 const PORT = 3000
@@ -28,7 +29,10 @@ app.get("/", (req,res) => {
     })
 })
 
-app.listen(process.env.PORT || PORT, () => {
+// Create api's
+app.use("/api/v1/user", userRoute)
+
+app.listen(PORT, () => {
     console.log(`Server running at PORT ${PORT}`)
     connectDB();
 });
