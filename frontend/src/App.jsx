@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Navbar } from "./components/shared"
 import { Login, Signup } from "./components/auth"
 import Home from "./components/Home"
-import { Jobs } from "./components"
+import { Browse, Jobs } from "./components"
+
+
 
 const appRouter = createBrowserRouter([
   {
@@ -23,6 +25,11 @@ const appRouter = createBrowserRouter([
   {
     path: '/jobs',
     element: <Jobs />
+  },
+
+  {
+    path: '/browse',
+    element: <Browse />
   }
 
 
