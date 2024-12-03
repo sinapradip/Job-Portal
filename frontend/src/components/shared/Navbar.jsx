@@ -6,7 +6,7 @@ import { Avatar, AvatarImage } from '../ui/avatar'
 import { LogOut, User2 } from 'lucide-react'
 
 export function Navbar() {
-    const user = false;
+    const user = true;
     return (
         <>
             <div className='bg-white'>
@@ -75,7 +75,7 @@ export function Navbar() {
 
 
                                                 <User2 />
-                                                <Button variant="link">View Profile</Button>
+                                                <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
 
                                             </div>
 
