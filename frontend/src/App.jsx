@@ -28,6 +28,11 @@ const appRouter = createBrowserRouter([
   },
 
   {
+    path: '/description/:id',
+    element: <JobDescription />
+  },
+
+  {
     path: '/browse',
     element: <Browse />
   },

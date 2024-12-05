@@ -36,64 +36,67 @@ export function Navbar() {
 
                                 </div>
                             ) : (
-                                <Popover>
+                                <div>
+                                    <Popover>
 
-                                    <PopoverTrigger asChild>
-                                        <Avatar className="cursor-pointer">
-                                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                            <PopoverTrigger asChild>
+                                                <Avatar className="cursor-pointer">
+                                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
 
-                                        </Avatar>
-                                    </PopoverTrigger>
+                                                </Avatar>
+                                            </PopoverTrigger>
 
-                                    <PopoverContent className='w-80 p-[16px] shadow-md rounded-[4px]'>
+                                            <PopoverContent className='w-80 p-[16px] shadow-md rounded-[4px] bg-white'>
 
-                                        {/* avatar+ (name + bio) */}
-                                        <div className='flex items-center gap-[8px]'>
+                                                {/* avatar+ (name + bio) */}
+                                                <div className='flex items-center gap-[8px]'>
 
-                                            <Avatar className="cursor-pointer">
+                                                    <Avatar className="cursor-pointer">
 
-                                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
 
-                                            </Avatar>
-
-
-                                            {/* name + bio */}
-                                            <div>
-
-                                                <h4 className='font-medium'>Rajeshwari Baniya</h4>
-                                                <p className='text-sm text-muted-foreground'>UI/UX Designer</p>
-
-                                            </div>
+                                                    </Avatar>
 
 
+                                                    {/* name + bio */}
+                                                    <div>
 
-                                        </div>
+                                                        <h4 className='font-medium'>Rajeshwari Baniya</h4>
+                                                        <p className='text-sm text-muted-foreground'>UI/UX Designer</p>
 
-                                        <div className='flex flex-col text-gray-600'>
-
-                                            <div className='flex w-fit items-center gap-2 cursor-pointer'>
-
-
-                                                <User2 />
-                                                <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
-
-                                            </div>
-
-                                            <div className='flex w-fit items-center gap-2 cursor-pointer'>
-
-                                                <LogOut />
-                                                <Button variant="link">Logout</Button>
-
-                                            </div>
-
-
-                                        </div>
+                                                    </div>
 
 
 
-                                    </PopoverContent>
+                                                </div>
 
-                                </Popover>
+                                                <div className='flex flex-col text-gray-600'>
+
+                                                    <div className='flex w-fit items-center gap-2 cursor-pointer'>
+
+
+                                                        <User2 />
+                                                        <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
+
+                                                    </div>
+
+                                                    <div className='flex w-fit items-center gap-2 cursor-pointer'>
+
+                                                        <LogOut />
+                                                        <Button variant="link">Logout</Button>
+
+                                                    </div>
+
+
+                                                </div>
+
+
+
+                                            </PopoverContent>
+
+                                    </Popover>
+                                </div>
+                                
                             )
 
                         }
