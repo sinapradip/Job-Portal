@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { Navbar } from "./components/shared"
+
 import { Login, Signup } from "./components/auth"
 import Home from "./components/Home"
-import { Browse, Jobs, Profile } from "./components"
+import { Browse, JobDescription, Jobs, Profile } from "./components"
 
 
 

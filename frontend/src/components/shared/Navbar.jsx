@@ -1,5 +1,5 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { Avatar, AvatarImage } from '../ui/avatar'
