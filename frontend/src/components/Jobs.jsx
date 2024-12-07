@@ -36,10 +36,6 @@ export function Jobs() {
 
         </div>
         
-        
-
-         
-
       </div>
 
     </div>

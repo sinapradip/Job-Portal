@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 export function Job() {
 
     const navigate = useNavigate();
-    const jobID = "qwertyuiopasdfghjklxcvbnm"
+    const jobID = "job1"
     return (
         <div className='p-5 rounded-[8px] shadow-md bg-white border border-gray-100 cursor-pointer hover:shadow-xl'>
             <div className='flex items-center justify-between'>

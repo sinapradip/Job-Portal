@@ -2,18 +2,18 @@ import React from 'react'
 import { RadioGroup, RadioGroupItem } from './ui/radio-group'
 import { Label } from './ui/label'
 
-const fitlerData = [
+const filterData = [
   {
-      fitlerType: "Location",
+      filterType: "Location",
       array: ["Chitwan", "Kathmandu", "Gorkha", "Bhaktapur", "Jhapa"]
   },
   {
-      fitlerType: "Industry",
+      filterType: "Industry",
       array: ["Frontend Developer", "Backend Developer", "FullStack Developer"]
   },
   {
-      fitlerType: "Salary",
-      array: ["0-40k", "42-1lakh", "1lakh to 5lakh"]
+      filterType: "Salary",
+      array: ["0-40k", "40k-1lakh", "1lakh to 5lakhs"]
   },
 ]
 
@@ -24,9 +24,9 @@ export  function FilterCard() {
       <hr className='mt-2' />
       <RadioGroup className = "mt-3">
         {
-          fitlerData.map((data, index)=> (
+          filterData.map((data, index)=> (
             <div>
-              <h1 className='font-medium text-base'>{data.fitlerType}</h1>
+              <h1 className='font-medium text-base'>{data.filterType}</h1>
               {
                 data.array.map((item, index)=> {
                   return(
