@@ -1,5 +1,4 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
-
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { Avatar, AvatarImage } from '../ui/avatar'
@@ -106,9 +105,6 @@ export function Navbar() {
                     </div>
 
                 </div>
-
-
-
 
 
 
