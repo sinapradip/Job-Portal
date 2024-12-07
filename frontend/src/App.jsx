@@ -5,7 +5,6 @@ import Home from "./components/Home"
 import { Browse, JobDescription, Jobs, Profile } from "./components"
 
 
-
 const appRouter = createBrowserRouter([
   {
     path: '/',
