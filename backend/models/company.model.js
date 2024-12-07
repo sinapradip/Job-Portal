@@ -1,12 +1,13 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const companySchema = mongoose.Schema({
+const companySchema = new mongoose.Schema({
 
-    companyName: {
+    name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    companyDescription: {
+    description: {
         type: String,
     },
     website: {
@@ -22,6 +23,10 @@ const companySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
+    },
+    company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company"
     }
 
 }, {timestamps: true})

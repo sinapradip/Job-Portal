@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const jobSchema = mongoose.Schema({
 
@@ -23,26 +23,29 @@ const jobSchema = mongoose.Schema({
     },
     jobType: {
         type: String,
-        required: true
     },
-    numberOfOpenPosition: {
+    experienceLevel: {
         type: Number,
         required: true
     },
-    companyJobRelation: {
+    numberOfOpenPosition: {
+        type: Number
+    },
+    company: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Company',
-        required: true
+        ref: 'Company'
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        ref: 'User'
     },
-    jobApplications: {
+    applications: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Application'
-    }
+    },
+    companyId: {
+        type: String
+    },
 
 }, {timestamps: true})
 
