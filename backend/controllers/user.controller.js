@@ -6,10 +6,13 @@ import { User } from '../models/User.model.js'
 export const register = async (req, res) => {
     try {
         // Object Destruction in JS
-        const {fullname, email, phone, password, role} = req.body;
+        const {fullname, email, phoneNumber, password, role} = req.body;
+        console.log(fullname, email, phoneNumber, password, role);
+        
 
         // Check if any field is missing
-        if(!fullname || !email || !phone || !password || !role) {
+        if(!fullname || !email || !phoneNumber || !password || !role) {
+            
             return res.status(400).json({
                 message: 'Either of the field is missing',
                 success: false
@@ -18,6 +21,7 @@ export const register = async (req, res) => {
 
         //check if User with the input email already exists
         const user = await User.findOne({email});
+        console.log("User found:", user);
         if(user) {
             return res.status(400).json({
                 message: 'User with this email already exists.',
@@ -31,7 +35,7 @@ export const register = async (req, res) => {
         await User.create({
             fullname,
             email,
-            phone,
+            phoneNumber,
             password: hashedPassword,
             role
         })
@@ -68,6 +72,7 @@ export const login = async(req,res) => {
         // 2. Check if the User exists with the given email
 
         let user = await User.findOne({email})
+         
         if(!user) {
             return res.status(400).json({
                 message: 'Incorrect email or password.',
@@ -77,7 +82,7 @@ export const login = async(req,res) => {
 
         // 3. Compare the provided password with the hashed password in the database
         const isPasswordMatch = await bcrypt.compare(password, user.password)
-
+        
         if(!isPasswordMatch) {
             return res.status(400).json(
                 {
@@ -108,7 +113,7 @@ export const login = async(req,res) => {
             _id: user._id,
             fullname: user.fullname,
             email: user.email,
-            phone: user.phone,
+            phoneNumber: user.phoneNumber,
             role: user.role,
             profile: user.profile
         }
@@ -154,7 +159,7 @@ export const logout = async(req, res) => {
 
 export const updateProfile = async(req, res) => {
     try {
-        const {fullname, email, phone, bio, skills} = req.body;
+        const {fullname, email, phoneNumber, bio, skills} = req.body;
         const file = req.file;
         
         // Cloudinary setup comes here later
@@ -179,7 +184,7 @@ export const updateProfile = async(req, res) => {
 
         if (fullname) user.fullname = fullname;
         if (email) user.email = email;
-        if (phone) user.phone = phone;
+        if (phoneNumber) user.phone = phoneNumber;
         if (bio) user.bio = bio;
         if (skillsArray) user.skills = skillsArray; // Skills is now a array
 
@@ -195,7 +200,7 @@ export const updateProfile = async(req, res) => {
                 _id: user._id,
                 fullname: user.fullname,
                 email: user.email,
-                phone: user.phone,
+                phoneNumber: user.phoneNumber,
                 bio: user.bio,
                 skills: user.skills
             }

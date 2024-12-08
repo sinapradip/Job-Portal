@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
-    phone: {
+    phoneNumber: {
       type: Number,
       required: true,
     },
@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["Employee", "Recruiter"],
+      enum:['student','recruiter'],
       required: true,
     },
     profile: {

@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from '../ui/avatar'
 import { LogOut, User2 } from 'lucide-react'
 
 export function Navbar() {
-    const user = true;
+    const user = false;
     return (
         <>
             <div className='bg-white'>
