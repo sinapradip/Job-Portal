@@ -7,7 +7,7 @@ export const register = async (req, res) => {
     try {
         // Object Destruction in JS
         const {fullname, email, phoneNumber, password, role} = req.body;
-        console.log(fullname, email, phoneNumber, password, role);
+        
         
 
         // Check if any field is missing
