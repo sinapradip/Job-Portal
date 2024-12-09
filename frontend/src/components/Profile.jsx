@@ -6,14 +6,16 @@ import { Contact, Mail, Pen } from 'lucide-react'
 import { Badge } from './ui/badge'
 import { Label } from './ui/label'
 import { AppliedJobTable, UpdateProfileDialog } from '.'
+import { useSelector } from 'react-redux'
 
-const skills = ["Html", "Css", "Javascript", "Reactjs"]
+// const skills = ["Html", "Css", "Javascript", "Reactjs"]
 const isResume = true;
 
 
 export function Profile() {
 
     const [open, setOpen] = useState(false);
+    const {user} = useSelector(store=>store.auth);
     return (
         <div>
             <Navbar />
@@ -25,8 +27,8 @@ export function Profile() {
                         </Avatar>
 
                         <div>
-                            <h1 className='font-medium text-xl'>Full name</h1>
-                            <p>Add your bio here </p>
+                            <h1 className='font-medium text-xl'>{user?.fullname}</h1>
+                            <p>{user?.profile?.bio}</p>
                         </div>
                     </div>
 
@@ -36,12 +38,12 @@ export function Profile() {
                 <div className='my-5'>
                     <div className='flex items-center gap-3 my-2'>
                         <Mail />
-                        <span>rajeshwari@gmail.com</span>
+                        <span>{user?.email}</span>
                     </div>
 
                     <div className='flex items-center gap-3 my-2'>
                         <Contact />
-                        <span>+977 9862794267</span>
+                        <span>{user?.phoneNumber}</span>
                     </div>
 
                     
@@ -52,7 +54,7 @@ export function Profile() {
                     <h1>Skills</h1>
                     <div className='flex items-center gap-2'>
                         {
-                            skills.length !== 0 ? skills.map((item, index) => <Badge key={index}>{item}</Badge>) : <span>Not available</span>
+                             user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge key={index}>{item}</Badge>) : <span>Not available</span>
                         }
                     </div>
                     

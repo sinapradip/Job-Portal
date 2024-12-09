@@ -6,13 +6,15 @@ import { User } from '../models/User.model.js'
 export const register = async (req, res) => {
     try {
         // Object Destruction in JS
-        const {fullname, email, phoneNumber, password, role} = req.body;
-        
-        
+        const { fullname, email, phoneNumber, password, role } = req.body;
+
+
+
+
 
         // Check if any field is missing
-        if(!fullname || !email || !phoneNumber || !password || !role) {
-            
+        if (!fullname || !email || !phoneNumber || !password || !role) {
+
             return res.status(400).json({
                 message: 'Either of the field is missing',
                 success: false
@@ -20,9 +22,9 @@ export const register = async (req, res) => {
         }
 
         //check if User with the input email already exists
-        const user = await User.findOne({email});
+        const user = await User.findOne({ email });
         console.log("User found:", user);
-        if(user) {
+        if (user) {
             return res.status(400).json({
                 message: 'User with this email already exists.',
                 success: false
@@ -47,7 +49,7 @@ export const register = async (req, res) => {
 
 
     }
-    catch(error) {
+    catch (error) {
         return res.status(500).json({
             message: 'An error occured while registering the account. Please try again.',
             success: false,
@@ -56,13 +58,13 @@ export const register = async (req, res) => {
     }
 }
 
-export const login = async(req,res) => {
+export const login = async (req, res) => {
     try {
-        const {email, password, role} = req.body;
+        const { email, password, role } = req.body;
 
         // 1. Validate required fields (email, password, role)
 
-        if(!email || !password || !role) {
+        if (!email || !password || !role) {
             return res.status(400).json({
                 message: 'Incorrect credentials or Role',
                 success: false
@@ -71,9 +73,9 @@ export const login = async(req,res) => {
 
         // 2. Check if the User exists with the given email
 
-        let user = await User.findOne({email})
-         
-        if(!user) {
+        let user = await User.findOne({ email })
+
+        if (!user) {
             return res.status(400).json({
                 message: 'Incorrect email or password.',
                 success: false
@@ -82,8 +84,8 @@ export const login = async(req,res) => {
 
         // 3. Compare the provided password with the hashed password in the database
         const isPasswordMatch = await bcrypt.compare(password, user.password)
-        
-        if(!isPasswordMatch) {
+
+        if (!isPasswordMatch) {
             return res.status(400).json(
                 {
                     message: 'Incorrect email or password.',
@@ -93,7 +95,7 @@ export const login = async(req,res) => {
         }
 
         // 4. Verify the provided role matches the User's role in the database
-        if(user.role !== role) {
+        if (user.role !== role) {
             return res.status(400).json({
                 message: 'Incorrect role.',
                 success: false
@@ -106,7 +108,7 @@ export const login = async(req,res) => {
         }
 
         // 6. Return the token in a cookie with a 1-day expiration and set proper cookie options (httpsOnly, sameSite)
-        const token = jwt.sign(tokenData, process.env.JWT_SECRET, {expiresIn: '1d'})
+        const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' })
 
         // create user object to return in the response
         user = {
@@ -134,7 +136,7 @@ export const login = async(req,res) => {
 
 
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
 
         return res.status(500).json({
@@ -143,50 +145,51 @@ export const login = async(req,res) => {
     }
 }
 
-export const logout = async(req, res) => {
+export const logout = async (req, res) => {
     try {
-        return res.status(200).cookie("token", "", {maxAge: 0}).json({
+        return res.status(200).cookie("token", "", { maxAge: 0 }).json({
             message: "Logged out successfully",
             success: true
         })
     }
     catch (error) {
         return res.status(500).json({
-             message: 'An unexpected error occured. Please try again.'
+            message: 'An unexpected error occured. Please try again.'
         })
     }
 }
 
-export const updateProfile = async(req, res) => {
+export const updateProfile = async (req, res) => {
     try {
-        const {fullname, email, phoneNumber, bio, skills} = req.body;
-        const file = req.file;
+        const { fullname, email, phoneNumber, bio, skills } = req.body;
         
+        const file = req.file;
+
         // Cloudinary setup comes here later
 
         // convert skills string to array
         let skillsArray;
-        if(skills) {
-            skillsArray = skills.split(",")
+        if (skills) {
+            skillsArray = skills.split(",");
         }
         const userId = req.id; // middleware authentication
 
         let user = await User.findById(userId);
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({
                 message: "User not found",
                 success: false
             })
         }
 
-        // Updating data
+        // updating data
 
-        if (fullname) user.fullname = fullname;
-        if (email) user.email = email;
-        if (phoneNumber) user.phone = phoneNumber;
-        if (bio) user.bio = bio;
-        if (skillsArray) user.skills = skillsArray; // Skills is now a array
+        if (fullname) user.fullname = fullname
+        if (email) user.email = email
+        if (phoneNumber) user.phoneNumber = phoneNumber
+        if (bio) user.profile.bio = bio
+        if (skills) user.profile.skills = skillsArray
 
         // resume code
 
@@ -201,13 +204,13 @@ export const updateProfile = async(req, res) => {
                 fullname: user.fullname,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
-                bio: user.bio,
-                skills: user.skills
+                role: user.role,
+                profile: user.profile
             }
         });
 
     }
-    catch(error) {
+    catch (error) {
 
         console.error("Error updating profile:", error);
 
