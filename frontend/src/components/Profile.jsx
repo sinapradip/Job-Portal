@@ -63,7 +63,7 @@ export function Profile() {
                 <div className='grid w-full max-w-sm items-center gap-1.5'>
                     <Label className="text-md">Resume</Label>
                     {
-                        isResume ? <a target="_blank" href='https://www.google.com/' className='text-blue-500 w-full hover:underline cursor-pointer'>Test</a> : <span>NA</span>
+                        isResume ? <a target='_blank' href={user?.profile?.resume}  className='text-blue-500 w-full hover:underline cursor-pointer'>{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
                     }
                 </div>
 
