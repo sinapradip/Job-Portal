@@ -23,6 +23,10 @@ export const register = async (req, res) => {
             })
         }
 
+        const file = req.file;
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+
         //check if User with the input email already exists
         const user = await User.findOne({ email });
         console.log("User found:", user);
