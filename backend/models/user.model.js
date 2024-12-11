@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId, // ref to company model
         ref: "company",
       },
-      profilephoto: {
+      profilePhoto: {
         type: String,
         default: "",
       },

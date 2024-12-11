@@ -64,7 +64,7 @@ export function Navbar() {
 
                                         <PopoverTrigger asChild>
                                             <Avatar className="cursor-pointer">
-                                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                                <AvatarImage src={user?.profile?.profilePhoto}  alt="@shadcn" />
 
                                             </Avatar>
                                         </PopoverTrigger>
@@ -76,7 +76,7 @@ export function Navbar() {
 
                                                 <Avatar className="cursor-pointer">
 
-                                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                                    <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
 
                                                 </Avatar>
 
@@ -84,8 +84,8 @@ export function Navbar() {
                                                 {/* name + bio */}
                                                 <div>
 
-                                                    <h4 className='font-medium'>Rajeshwari Baniya</h4>
-                                                    <p className='text-sm text-muted-foreground'>UI/UX Designer</p>
+                                                    <h4 className='font-medium'>{user?.fullname}</h4>
+                                                    <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
 
                                                 </div>
 

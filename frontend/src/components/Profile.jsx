@@ -23,7 +23,7 @@ export function Profile() {
                 <div className='flex justify-between'>
                     <div className='flex items-center gap-4'>
                         <Avatar className="h-24 w-24">
-                            <AvatarImage src="https://img.freepik.com/free-vector/illustration-creative-ideas-concept-icon_53876-7959.jpg?ga=GA1.1.1865145156.1731738987&semt=ais_hybrid" alt="profile" />
+                            <AvatarImage src={user?.profile?.profilePhoto} alt="profile" />
                         </Avatar>
 
                         <div>
