@@ -3,12 +3,12 @@ import { Job } from "../models/job.model.js";
 // admin posts the job
 export const postJob = async (req, res) => {
     try {
-        const { title, description, requirements, salary, location, jobType, experience, position, companyId } = req.body;
+        const { title, description, requirements, salary, location, jobType, experienceLevel, position, companyId } = req.body;
         const userId = req.id;
 
         
 
-        if (!title || !description || !salary || !location || !jobType || !experience || !position || !companyId) {
+        if (!title || !description || !salary || !location || !jobType || !experienceLevel || !position || !companyId) {
             return res.status(400).json({
                 message: "Something is missing.",
                 success: false
@@ -17,12 +17,13 @@ export const postJob = async (req, res) => {
         const job = await Job.create({
             title,
             description,
+            requirements: requirements.split(","),
             salary: Number(salary),
             location,
             jobType,
-            experienceLevel: experience,
+            experienceLevel,
             position,
-            companyId,
+            company: companyId,
             created_by: userId
         });
         return res.status(201).json({
@@ -44,9 +45,17 @@ export const getAllJobs = async (req, res) => {
                 { description: { $regex: keyword, $options: "i" } },
             ]
         };
+
         const jobs = await Job.find(query).populate({
             path: "company"
         }).sort({ createdAt: -1 });
+
+//         const jobs = await Job.find(query)
+//     .populate('company')
+//     .sort({ createdAt: -1 });
+
+
+
         if (!jobs) {
             return res.status(404).json({
                 message: "Jobs not found.",
@@ -66,7 +75,7 @@ export const getJobById = async (req, res) => {
     try {
         const jobId = req.params.id;
         const job = await Job.findById(jobId).populate({
-            path:"jobApplications"
+            path:"applications"
         });
         if (!job) {
             return res.status(404).json({

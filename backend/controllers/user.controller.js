@@ -11,9 +11,6 @@ export const register = async (req, res) => {
         const { fullname, email, phoneNumber, password, role } = req.body;
 
 
-
-
-
         // Check if any field is missing
         if (!fullname || !email || !phoneNumber || !password || !role) {
 

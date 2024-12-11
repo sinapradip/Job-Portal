@@ -10,9 +10,9 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    requirements: {
+    requirements: [{
         type: String
-    },
+    }],
     salary: {
         type: Number,
         required: true
@@ -28,7 +28,7 @@ const jobSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    numberOfOpenPosition: {
+    position: {
         type: Number
     },
     company: {
@@ -43,9 +43,11 @@ const jobSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Application'
     },
-    companyId: {
-        type: String
-    },
+    // companyId: {
+    //     type: String
+    // },
+    companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' }, // Correct field for referencing Company
+    
 
 }, {timestamps: true})
 
