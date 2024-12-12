@@ -46,9 +46,28 @@ export function Navbar() {
                     {/* Home, Jobs, Browse +  popover*/}
                     <div className='flex items-center gap-12'>
                         <ul className='flex font-medium items-center gap-5'>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/jobs">Jobs</Link></li>
-                            <li><Link to="/browse">Browse</Link></li>
+
+
+                            {
+                            user?.role === 'recruiter'? (
+                                <>
+
+                                    
+                                    <li><Link to="/admin/companies">Companies</Link></li>
+                                    <li><Link to="/admin/jobs">Jobs</Link></li>
+                                </>
+                            ) : (
+                                <>
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><Link to="/jobs">Jobs</Link></li>
+                                    <li><Link to="/browse">Browse</Link></li>
+                                </>
+                            )
+                        }
+
+                            {/* <li><Link to="/admin/companies">Companies</Link></li>
+                                    <li><Link to="/admin/jobs">Jobs</Link></li> */}
+
 
                         </ul>
                         {
@@ -64,7 +83,7 @@ export function Navbar() {
 
                                         <PopoverTrigger asChild>
                                             <Avatar className="cursor-pointer">
-                                                <AvatarImage src={user?.profile?.profilePhoto}  alt="@shadcn" />
+                                                <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
 
                                             </Avatar>
                                         </PopoverTrigger>
