@@ -39,10 +39,10 @@ const jobSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    applications: {
+    applications: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Application'
-    },
+    }],
     // companyId: {
     //     type: String
     // },

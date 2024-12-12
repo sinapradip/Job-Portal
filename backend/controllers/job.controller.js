@@ -24,7 +24,7 @@ export const postJob = async (req, res) => {
             experienceLevel,
             position,
             company: companyId,
-            created_by: userId
+            createdBy: userId
         });
         return res.status(201).json({
             message: "New job created successfully.",
