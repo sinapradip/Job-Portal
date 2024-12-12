@@ -104,7 +104,15 @@ export function Navbar() {
                                                 <div>
 
                                                     <h4 className='font-medium'>{user?.fullname}</h4>
-                                                    <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
+
+                                                        {
+                                                            user?.role === 'recruiter' ? (
+                                                            <p className='text-sm text-muted-foreground'>Talent recruiter</p>
+                                                        ) : (
+                                                                <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
+                                                            )
+                                                        }
+                                        
 
                                                 </div>
 
@@ -114,14 +122,14 @@ export function Navbar() {
 
                                             <div className='flex flex-col text-gray-600'>
 
-                                                <div className='flex w-fit items-center gap-2 cursor-pointer'>
-
-
-                                                    <User2 />
-                                                    <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
-
-                                                </div>
-
+                                            {
+                                                user && user.role === 'student' && (
+                                                    <div className='flex w-fit items-center gap-2 cursor-pointer'>
+                                                        <User2 />
+                                                        <Button variant="link"> <Link to="/profile">View Profile</Link></Button>
+                                                    </div>
+                                                )
+                                            }
                                                 <div className='flex w-fit items-center gap-2 cursor-pointer'>
 
                                                     <LogOut />

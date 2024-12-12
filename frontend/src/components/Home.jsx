@@ -11,12 +11,11 @@ export default function Home() {
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
 
-  // will change later
-  // useEffect(() => {
-  //   if (user?.role === 'recruiter') {
-  //     navigate("/admin/companies");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (user?.role === 'recruiter') {
+      navigate("/admin/companies");
+    }
+  }, []);
 
   return (
     <>
