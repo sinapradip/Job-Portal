@@ -9,11 +9,6 @@ import AdminJobs from "./components/admin/AdminJobs"
 
 
 
-
-
-
-
-
 const appRouter = createBrowserRouter([
   {
     path: '/',
