@@ -53,7 +53,7 @@ export const applyJob = async (req, res) => {
 export const getAppliedJobs = async (req, res) => {
     try {
         const userId = req.id;
-        const application = await Job.find({applicant: userId}).sort({createdAt: -1}).populate({
+        const application = await Application.find({applicant: userId}).sort({createdAt: -1}).populate({
             path: "job",
             options: {sort: {createdAt: -1}},
             populate: {
@@ -112,18 +112,18 @@ export const updateStatus = async (req, res) => {
     try {
         const { status } = req.body;
         const applicationId = req.params.id;
-
+ 
         if(!status) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Status is required",
                 success: false
             })
         }
 
         // find application by application id
-        const application = Application.find({ _id: applicationId })
+        const application = await Application.findOne({ _id: applicationId })
         if(!application) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Application not found",
                 success: false
             })
@@ -134,10 +134,11 @@ export const updateStatus = async (req, res) => {
 
         return res.status(200).json({
             message: "Status updated successfully",
-            success: true
+            success: true,
+            application
         })
 
     } catch (error) {
-        console.log("error.message")
+        console.log(error.message)
     }
 }
