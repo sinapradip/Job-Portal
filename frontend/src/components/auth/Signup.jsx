@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Navbar } from '../shared'
-import { Label } from '@radix-ui/react-label'
+
 import { Input } from '../ui/input'
 import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import store from '@/redux/store'
 import { setLoading } from '@/redux/authSlice'
 import { Loader2 } from 'lucide-react'
+import { Label } from '../ui/label'
 
 export function Signup() {
 

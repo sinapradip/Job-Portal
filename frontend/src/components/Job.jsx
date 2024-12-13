@@ -33,7 +33,7 @@ export function Job({job}) {
             <div className='flex items-center gap-2 my-2'>
                 <Button className="p-6" variant="outline" size="icon">
                     <Avatar>
-                        <AvatarImage src='https://img.freepik.com/free-vector/illustration-creative-ideas-concept-icon_53876-7959.jpg?ga=GA1.1.1865145156.1731738987&semt=ais_hybrid' />
+                        <AvatarImage src= {job?.company?.logo} />
                     </Avatar>
                 </Button>
 
