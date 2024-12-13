@@ -4,6 +4,8 @@ import Home from "./components/Home"
 import { Browse, JobDescription, Jobs, Profile } from "./components"
 import Companies from "./components/admin/Companies"
 import AdminJobs from "./components/admin/AdminJobs"
+import CompanyCreate from "./components/admin/CompanyCreate"
+import CompanySetup from "./components/admin/CompanySetup"
 
 
 
@@ -55,6 +57,16 @@ const appRouter = createBrowserRouter([
   {
     path:"/admin/jobs",
     element:<AdminJobs/>
+  },
+
+  {
+    path:"/admin/companies/create",
+    element: <CompanyCreate/>
+  },
+
+  {
+    path:"/admin/companies/:id",
+    element:<CompanySetup/>
   },
 
   
