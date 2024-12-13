@@ -13,7 +13,7 @@ const filterData = [
   },
   {
       filterType: "Salary",
-      array: ["0-40k", "40k-1lakh", "1lakh to 5lakhs"]
+      array: ["Rs 0 - 40,000", " Rs 40,000 - 1,00,000", "Rs 1,00,000 - 5,00,000"]
   },
 ]
 
