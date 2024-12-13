@@ -17,7 +17,10 @@ export default function ApplicantsTable() {
         console.log('called');
         try {
             axios.defaults.withCredentials = true;
-            const res = await axios.post(`${APPLICATION_API_END_POINT}/status/${id}/update`, { status });
+            // const res = await axios.post(`${APPLICATION_API_END_POINT}/status/${id}/update`, { status }, {
+            const res = await axios.post(`${APPLICATION_API_END_POINT}/update/${id}`, { status }, {
+                 withCredentials: true 
+                });
             console.log(res);
             if (res.data.success) {
                 toast.success(res.data.message);
@@ -54,7 +57,7 @@ export default function ApplicantsTable() {
                                         item.applicant?.profile?.resume ? <a className="text-blue-600 cursor-pointer" href={item?.applicant?.profile?.resume} target="_blank" rel="noopener noreferrer">{item?.applicant?.profile?.resumeOriginalName}</a> : <span>NA</span>
                                     }
                                 </TableCell>
-                                <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
+                                <TableCell>{item?.applicant?.createdAt?.split("T")[0]}</TableCell>
                                 <TableCell className="float-right cursor-pointer">
                                     <Popover>
                                         <PopoverTrigger>
