@@ -31,7 +31,7 @@ export default function ApplicantsTable() {
   return (
      <div>
             <Table>
-                <TableCaption>A list of your recent applied user</TableCaption>
+                <TableCaption>A list of your recently applied user</TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead>FullName</TableHead>
