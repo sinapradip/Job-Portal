@@ -91,7 +91,7 @@ export function Navbar() {
                                         <PopoverContent className='w-80 p-[16px] shadow-md rounded-[4px] bg-white'>
 
                                             {/* avatar+ (name + bio) */}
-                                            <div className='flex items-center gap-[8px]'>
+                                            <div className='flex  gap-[8px]'>
 
                                                 <Avatar className="cursor-pointer">
 
