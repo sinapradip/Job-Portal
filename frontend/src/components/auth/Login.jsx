@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar } from '../shared'
 
 import { Input } from '../ui/input'
@@ -60,6 +60,13 @@ export  function Login() {
   }
     
   }
+
+
+  useEffect(()=>{
+    if(user){
+        navigate("/");
+    }
+},[])
 
   return (
     <>

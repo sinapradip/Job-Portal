@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar } from '../shared'
 import { Input } from '../ui/input'
 import { RadioGroup } from '../ui/radio-group'
@@ -105,6 +105,12 @@ export function Signup() {
         }
 
     }
+
+    useEffect(()=>{
+        if(user){
+            navigate("/");
+        }
+    },[])
 
     return (
         <>
