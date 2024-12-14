@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Navbar } from './shared'
 import { FilterCard, Job } from '.'
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -19,9 +20,10 @@ export function Jobs() {
       })
       setFilterJobs(filteredJobs)
     } else {
-      setFilterJobs(allJobs)
+      setFilterJobs(allJobs) // all jobs
     }
   }, [allJobs, searchedQuery]);
+
 
   return (
     <div>
@@ -36,27 +38,25 @@ export function Jobs() {
 
 
           {
-            allJobs.length <= 0 ? <span>Job not found</span> : (
+            filterJobs.length <= 0 ? <span>Job not found</span> : (
               <div className='flex-1 h-[88vh] overflow-y-auto pb-5'>
                 <div className='grid grid-cols-3 gap-4'>
                   {
-                    allJobs.map((job) => (
-                      // <motion.div
-                      //   initial={{ opacity: 0, x: 100 }}
-                      //   animate={{ opacity: 1, x: 0 }}
-                      //   exit={{ opacity: 0, x: -100 }}
-                      //   transition={{ duration: 0.3 }}
-                      //   key={job?._id}>
+                    filterJobs.map((job) => (
+                      <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.3 }}
+                        key={job?._id}>
                         <Job job={job} />
-                      // </motion.div>
+                      </motion.div>
                     ))
                   }
                 </div>
               </div>
             )
-
           }
-
         </div>
 
       </div>

@@ -79,7 +79,7 @@ export function Navbar() {
                                 </div>
                             ) : (
                                 <div>
-                                    <Popover>
+                                    <Popover className = "bg-white">
 
                                         <PopoverTrigger asChild>
                                             <Avatar className="cursor-pointer">
