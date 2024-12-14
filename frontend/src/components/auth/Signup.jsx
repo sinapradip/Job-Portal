@@ -39,9 +39,7 @@ export function Signup() {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        // console.log("USER_API_END_POINT:", USER_API_END_POINT);
-
-        // console.log(input);
+        
 
         if (!input.fullname || !input.email || !input.phoneNumber || !input.password || !input.role) {
             toast.error('All fields are required.');
