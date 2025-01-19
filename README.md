@@ -6,4 +6,3 @@ This is the project for CSIT Seventh Semester.
 <br/>
 [Sina Pradip](https://github.com/sinapradip)
 
-.
