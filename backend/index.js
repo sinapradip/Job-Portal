@@ -9,7 +9,7 @@ import jobRoute from "./routes/job.route.js"
 import applicationRoute from "./routes/application.route.js"
 
 const app = express(); // create express app instance
-const PORT = 3000
+const PORT = process.env.PORT || 3000; // set port from environment variable or default to 5000
 
 dotenv.config(); // load environment variables from .env file
 const corsOptions = {
