@@ -109,11 +109,11 @@ export  function Login() {
                             <Input
                             type= "radio"
                             name= "role"
-                            value= "student"
-                            checked = {input.role === 'student'}
+                            value= "job-seeker"
+                            checked = {input.role === 'job-seeker'}
                             onChange = {changeEventHandler}
-                            className= "cursor-pointer"/>
-                            <Label htmlFor="r1">Student</Label>
+                            className= "cursor w-max"/>
+                            <Label htmlFor="r1">Job Seeker</Label>
                         </div>
 
                         <div className="flex items-center space-x-2">
@@ -123,7 +123,7 @@ export  function Login() {
                             value= "recruiter"
                             checked = {input.role === 'recruiter'}
                             onChange = {changeEventHandler}
-                            className= "cursor-pointer"/>
+                            className= "cursor w-max"/>
                             <Label htmlFor="r2">Recruiter</Label>
                         </div>
                         
